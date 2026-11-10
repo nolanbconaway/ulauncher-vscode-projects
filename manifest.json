@@ -2,7 +2,7 @@
   "required_api_version": "^2.0.0",
   "name": "VS Code Projects",
   "description": "Open your VSCode projects from anywhere using Ulauncher",
-  "developer_name": "Bruno Paz",
+  "developer_name": "Nolan Conaway",
   "icon": "images/icon.png",
   "options": {
     "query_debounce": 0.1
