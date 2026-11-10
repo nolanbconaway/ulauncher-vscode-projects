@@ -2,16 +2,24 @@ import os
 import json
 import glob
 import datetime
-from memoization import cached
+import time
 from typing import List
 
 
 class Client(object):
     """ Client to interact with VS Code API"""
 
-    @cached(ttl=60)
+    def __init__(self):
+        self._projects_cache = {}
+
     def get_projects(self, preferences: dict):
         """ Returns projects """
+
+        cache_key = tuple(sorted(preferences.items()))
+        now = time.monotonic()
+        cached_result = self._projects_cache.get(cache_key)
+        if cached_result and now - cached_result[0] < 60:
+            return cached_result[1]
 
         project_manager_projects = []
         workspace_projects = []
@@ -29,6 +37,7 @@ class Client(object):
                 preferences, names_index)
 
         all_projects = project_manager_projects + workspace_projects
+        self._projects_cache[cache_key] = (now, all_projects)
         return all_projects
 
     def get_projects_from_project_manager(self, preferences):

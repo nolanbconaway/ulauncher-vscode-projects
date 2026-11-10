@@ -21,13 +21,7 @@
 
 ## Install
 
-You must install the following Python packages required by this extension. You can run the following command in the terminal:
-
-```sh
-pip install --user memoization==0.4.0
-```
-
-In some Operating systems, you might have to run `pip3` instead of `pip`
+This extension uses only Python's standard library; no additional Python packages are required.
 
 Open ulauncher preferences window -> extensions -> add extension and paste the following url:
 
